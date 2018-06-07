@@ -8,8 +8,7 @@ pipeline {
     }
     stage('test') {
       steps {
-        sh '''docker run -v `pwd`:/app -v  /home/user/.m2:/root/.m2 -w /app -p 8800:8000 localhost:5000/maven mvn package
-'''
+        sh 'docker run -v `pwd`:/app -v /home/user/.m2:/root/.m2 -w /app localhost:5000/maven mvn cobertura:cobertura test'
       }
     }
     stage('report') {
